@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\ChangePasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +17,9 @@ class AccountPasswordController extends AbstractController
      */
     public function index(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager): Response
     {
+
         $notif = null;
+
         $user = $this->getUser();
 
         $form = $this->createForm(ChangePasswordType::class, $user);
@@ -26,6 +27,7 @@ class AccountPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $old_password = $form->get('old_password')->getData();
 
             if ($passwordEncoder->isPasswordValid($user, $old_password)) {
