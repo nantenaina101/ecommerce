@@ -18,7 +18,10 @@
 				€</span>
 			<hr>
 			<p>{{ product.description }}</p>
-			<a href="#" class="btn btn-primary">ADD TO CART</a>
+			<a href="{{ path('add_to_cart', {'id':product.id}) }}" class="btn btn-primary"><img src="{{ asset('assets/images/shopping-cart.png') }}"><span class="ml-1">ADD TO CART</span>
+			</a>
+
+
 		</div>
 	</div>
 
